@@ -1,0 +1,50 @@
+﻿@page
+@model Semestrovka_3._0.Pages.Controllers.AuthController;
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <title>Food Bar</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.min.css">
+    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="vendors/popup/magnific-popup.css">
+    <link rel="stylesheet" href="vendors/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="vendors/scroll/jquery.mCustomScrollbar.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<section class="home_banner relative">
+<div class = "full_screen"></div>
+<form method = "post" asp-action="Registration" asp-controller = "Auth">
+    <div class = "registration_block">
+        <div class="col-lg-6 p-0">
+        <div class="banner_left d-flex justify-content-center flex-column">
+            <h1 class="reg_line">Registration</h1>
+        <input type="text" size = "40" placeholder="Your name" class="your_name" required>
+        <input type="text" size = "40" placeholder="Your surname" class="your_surname" required>
+        <input type="email" size = "40" placeholder="Your email" class="your_email" required>
+        <input type="password" size = "40" placeholder="Your password" class="your_password" required>
+        <input type="password" size = "40" placeholder="Confirm your password" class="confirm_password" required>
+        <input class="reg_btn" type="submit" value = "Sign up"/> 
+    </div>
+    </div>
+    </div>
+    </form>
+</section>
+</html>

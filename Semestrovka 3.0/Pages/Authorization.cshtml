@@ -1,0 +1,174 @@
+﻿@page
+@model Semestrovka_3._0.Pages.Controllers.AuthController
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="img/favicon.png" type="image/png">
+        <title>Food Bar</title>
+        <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="vendors/linericon/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.min.css">
+	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="vendors/animate-css/animate.css">
+	<link rel="stylesheet" href="vendors/popup/magnific-popup.css">
+	<link rel="stylesheet" href="vendors/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="vendors/scroll/jquery.mCustomScrollbar.css">
+	<!-- main css -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/responsive.css">
+    </head>
+	<!-- C# back-end -->
+    <body>
+
+<!--================Offcanvus Menu Area =================-->
+    <div class="side_menu">
+		<a class="logo" href="#">
+			<img src="img/logo.png" alt="">
+		</a>
+		<ul class="list menu_right">
+			<li>
+				<a asp-page="/Index">Home</a>
+			</li>
+			<li>
+				<a asp-page="/about-us">About</a>
+			</li>
+			<li>
+				<a asp-page="/menu">Menu</a>
+			</li>
+			<li>
+				<a asp-page="/book-table">Book a table</a>
+			</li>
+			<li>
+				<a href="#">Pages</a>
+				<ul class="list">
+					<li>
+						<a asp-page="/gallery">Gallery</a>
+					</li>
+					<li>
+						<a asp-page="/elements">Elements</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Blog</a>
+				<ul class="list">
+					<li>
+						<a asp-page="/blog">Blog</a>
+					</li>
+					<li>
+						<a asp-page="/single-blog">Blog Details</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a asp-page="contact">Contact</a>
+			</li>
+		</ul>
+		<ul class="list social">			
+			<li>
+				<a href="#">
+					<i class="fa fa-facebook"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="fa fa-twitter"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="fa fa-dribbble"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class="fa fa-behance"></i>
+				</a>
+			</li>
+			
+		</ul>
+	</div>
+    <!--================End Offcanvus Menu Area =================-->
+
+    <!--================ Start banner section =================-->
+	<div class="canvus_menu">
+		<div class="container">
+			<div class="float-right">
+				<div class="toggle_icon">
+					<span></span>
+				</div>
+			</div>
+		</div>
+	</div>
+     <section class="home_banner relative">
+    		<div class="container-fluid pl-0">
+    			<div class="row justify-content-center align-items-center full_height">
+					
+    				<div class="col-lg-6 p-0">
+    					<div class="banner_left d-flex justify-content-center flex-column">
+							<div>
+								<form method = "post" asp-action = "Authorization" asp-controller = "Auth">
+    						<h1 class="auth_line">Authorization</h1>
+	                        <p><input size="20" type = "text" placeholder = "Login" class="login" required></p>
+	                        <p><input type="password" size="20" placeholder="Password" class="password" required></p>
+    							<a class = "forgot_password_button" type="submit" href = "index.html">Forgot your password?</a>
+    						<input type = "submit" class="login_button" value = "Log in"/> 
+    						<a class = "register_button" asp-page="Registration">Sign in</a>
+							</form>
+						</div>
+						
+						</div>
+    				</div>
+					
+				<div class="col-lg-6">
+					<div class="banner_right d-flex justify-content-center align-items-center">
+						<div class="round-planet planet">
+							<div class="round-planet planet2">
+								<div class="round-planet planet3">
+									<div class="shape shape1"></div>
+									<div class="shape shape2"></div>
+									<div class="shape shape3"></div>
+									<div class="shape shape4"></div>
+									<div class="shape shape5"></div>
+									<div class="shape shape6"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<img class="face-img img-fluid" src="img/banner/home-banner.png" alt="">
+</section>
+<!--================ End banner section =================-->
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="js/jquery.lightbox.js"></script>
+	<script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+	<script src="vendors/isotope/isotope-min.js"></script>
+	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="vendors/counter-up/jquery.waypoints.min.js"></script>
+	<script src="vendors/counter-up/jquery.counterup.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="vendors/popup/jquery.magnific-popup.min.js"></script>
+	<script src="vendors/swiper/js/swiper.min.js"></script>
+	<script src="vendors/scroll/jquery.mCustomScrollbar.js"></script>
+	<script src="js/theme.js"></script>
+    </body>
+    </html>
