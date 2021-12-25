@@ -1,8 +1,5 @@
 ﻿@page
 @model Semestrovka_3._0.Pages.Controllers.AuthController;
-
-
-
 @{
     Layout = null;
 }
@@ -41,7 +38,7 @@
         <input type="email" size = "40" placeholder="Your email" class="your_email" required>
         <input type="password" size = "40" placeholder="Your password" class="your_password" required>
         <input type="password" size = "40" placeholder="Confirm your password" class="confirm_password" required>
-        <input class="reg_btn" type="submit" value = "Sign up"/> 
+        <input class="reg_btn" type="submit" asp-page = "/Index" value = "Sign up"/> 
     </div>
     </div>
     </div>

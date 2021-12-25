@@ -34,12 +34,7 @@ namespace Semestrovka_3._0
                 options.Cookie.HttpOnly = true;
             });
 
-            services.AddLinqToDbContext<AppDataConnection>((provider, options) =>
-            {
-                options
-                    .UseSqlServer(Configuration.GetConnectionString("Default"))
-                    .UseDefaultLogging(provider);
-            });
+            services.AddDbContext<AppDbContext>();
 
             var authOptionsConfiguration = Configuration.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfiguration);

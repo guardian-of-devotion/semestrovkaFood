@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using LinqToDB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +10,7 @@ using Semestrovka_3._0.Models;
 using Semestrovka_3._0.Pages.Options;
 using Semestrovka_3._0.Pages.Security;
 using Semestrovka_3._0.Pages.Services;
+using Microsoft.EntityFrameworkCore; 
 
 
 namespace Semestrovka_3._0.Pages.Controllers
@@ -39,29 +38,28 @@ namespace Semestrovka_3._0.Pages.Controllers
         public IActionResult Registration([FromForm] string name, [FromForm] string surname, [FromForm] string email,
            [FromForm] string password, [FromForm] string confirmPassword)
         {
-            
-            _context.SaveChanges();
 
-            var user = UserExists(email);
+            var user = UserExists(email, _context);
             if (user != null)
             {
-                return Ok("Такой пользователь уже существует!");
+                throw new Exception("This user already exists!");
             }
 
 
             if (password != confirmPassword)
             {
-                return Ok("Пароли не совпадают!");
+                throw new Exception("Password mismatch!");
             }
 
-            user = new User {
-                UserId = Guid.NewGuid(),
+            user = new User { 
                 Email = email,
                 Password = PassHash.Encrypt(password),
                 Name = name,
                 Surname = surname,
             };
 
+            _context.Users.Add(user);
+            _context.SaveChanges();
             
 
             ViewBag.AuthStatus = "Регистрация прошла успешно!";
@@ -70,15 +68,13 @@ namespace Semestrovka_3._0.Pages.Controllers
 
         [HttpPost]
 
-        public IActionResult Authorization([FromForm] string email, [FromForm] string password)
+        public IActionResult Authorization([FromForm] UserLoginPassword logPass)
         {
-            var pwd = PassHash.Encrypt(password);
-            var user = AuthenticateUser(email, pwd);
+            var user = AuthController.AuthenticateUser(logPass.email, logPass.password, _context);
 
-            if (user == null)
-                return Unauthorized();
+            if (user is null) return BadRequest();
 
-            var token = JwtGenerate(user);
+            JwtGenerate(user);
 
             if (!HttpContext.Session.Keys.Contains("user"))
                 HttpContext.Session.Set("user", user);
@@ -90,13 +86,12 @@ namespace Semestrovka_3._0.Pages.Controllers
             return RedirectToAction("_Layout", "Shared");
 
         }
-   
 
-        private User AuthenticateUser(string email, string password) =>
-            _context.User.FirstOrDefault(usr => usr.Email == email && usr.Password == password);
+        public static User? AuthenticateUser(string email, string password, AppDbContext _context) =>
+            _context.Users.FirstOrDefault(usr => usr.Email == email && usr.Password == password);
 
-        private User UserExists(string email) =>
-            _context.User.FirstOrDefault(usr => usr.Email == email);
+        public static User? UserExists(string email, AppDbContext _context) =>
+            _context.Users.FirstOrDefault(usr => usr.Email == email);
 
 
         private string JwtGenerate(User user)
@@ -122,6 +117,11 @@ namespace Semestrovka_3._0.Pages.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        public class UserLoginPassword
+        {
+            public string email { get; set; }
+            public string password { get; set; }
         }
     }
 }
